@@ -1,0 +1,39 @@
+import time
+
+time_start = time.time()
+
+
+def binary_search(array, left, right, answer):
+    """
+    Recursive binary search
+    :param array: array of elements
+    :param left: left side of array
+    :param right: right side of array
+    :param answer: element that could be find
+    :return: answer
+    """
+    if right >= left:
+        middle = (right + left) // 2  # finding middle of array
+        if array[middle] == answer:
+            return middle  # if we guessed for the first time
+        elif array[middle] > answer:
+            return binary_search(array, left, middle - 1, answer)  # if the element is at the left side of array
+        else:
+            return binary_search(array, middle + 1, right, answer)  # if the element is at the right side of array
+    else:
+        return None  # if element is not in the array
+
+
+arr = input().split()
+answer = input()
+result = binary_search(arr, 0, len(arr) - 1, answer)  # calling function
+
+if result is not None:
+    print("Index is", str(result))
+else:
+    print("None")
+
+time_end = time.time()
+total_time = time_end - time_start
+print("Time:", total_time)
+
