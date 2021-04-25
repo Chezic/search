@@ -1,0 +1,42 @@
+import time
+
+time_start = time.time()
+
+
+def binary_search(array, answer):
+    """
+    Iterative binary search
+    :param array: array of elements
+    :param left: left side of array
+    :param right: right side of array
+    :param answer: element that could be find
+    :return: answer
+    """
+    left = 0
+    right = len(array) - 1
+    middle = 0
+
+    while left <= right:
+        middle = (right + left) // 2  # finding middle of array
+        # compare with the center
+        if array[middle] < answer:
+            left = middle + 1
+        elif array[middle] > answer:
+            right = middle - 1
+        else:
+            return middle
+    return None
+
+
+array = input().split()
+answer = input()
+result = binary_search(array, answer)  # calling function
+
+if result is not None:
+    print("Index is", str(result))
+else:
+    print("None")
+
+time_end = time.time()
+total_time = time_end - time_start
+print("Time:", total_time)
